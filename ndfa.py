@@ -1,0 +1,78 @@
+class NDFA:
+
+    def __init__(self, alphabet, states, initial_state, final_states, transitions):
+        self.alphabet = set(alphabet)
+        self.states = set(states)
+        self.initial_state = initial_state
+        self.final_states = set(final_states)
+        self.transitions = transitions
+
+    def transition(self, state, symbol):
+        if self.transitions.get(state) is not None:
+            if self.transitions[state].get(symbol) is not None:
+                return self.transitions[state][symbol]
+        return None
+
+    def read(self, input):
+
+        current_states = [self.initial_state]
+        syms = [sym for sym in input]  # separate the input symbols
+        clock = 0
+
+        while len(syms) != 0:
+            next_states = []
+            self.show_config(clock, current_states,''.join(syms))
+            for state in current_states:
+                # make all the epsilon-transitions
+                epsT = self.transition(state, '&')
+                if epsT is not None:
+                    for s in epsT:
+                        if s not in current_states:
+                            current_states.append(s)
+            sym = syms.pop(0)
+            found_transition = False
+            for state in current_states:
+                # consume one input symbol
+                symT = self.transition(state, sym)
+                if symT is not None:
+                    found_transition = True
+                    for s in symT:
+                        if s not in next_states:
+                            next_states.append(s)
+            if found_transition == False:
+                syms.insert(0, sym)
+            if next_states == []:
+                break
+            current_states = next_states
+            clock += 1
+        # we need to make the epsilon-transitions after
+        # there is no more input symbols to consume
+        for state in current_states:
+                # make all the epsilon-transitions
+                epsT = self.transition(state, '&')
+                if epsT is not None:
+                    for s in epsT:
+                        if s not in current_states:
+                            current_states.append(s)
+        
+        self.show_config(clock, current_states,''.join(syms))
+        return (''.join(syms), current_states)
+
+    def accepts(self, input):
+        remaining_input, states = self.read(input)
+        reached_finals = self.final_states.intersection(set(states))
+        print(reached_finals)
+        if len(remaining_input) == 0 and len(reached_finals) != 0:
+            return True
+        else:
+            return False
+
+    def __str__(self):
+        return '(Alphabet: {}, States: {}, Initial State: {}, Final States: {}, Transitions: {})'\
+        .format(self.alphabet, self.states, self.initial_state, self.final_states, self.transitions)
+    
+    def show_config(self, clock, states, input):
+        print('Clock: {}, Current States: {}, Remaining Input: \'{}\''.format(clock, states, input))
+
+    def validate(self):
+        # TODO
