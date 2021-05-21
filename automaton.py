@@ -39,3 +39,5 @@ class InvalidStateError(BaseAutomatonError):
     pass
 class InvalidSymbolError(BaseAutomatonError):
     pass
+class InvalidTransitionError(BaseAutomatonError):
+    pass

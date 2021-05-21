@@ -1,19 +1,25 @@
-import ndfa
+from automaton import InvalidStateError, InvalidSymbolError, InvalidTransitionError
+from ndfa import NDFA
 
-class DFA(ndfa.NDFA):
+class DFA(NDFA):
     def is_valid(self):
-        if super().is_valid() is False:
-            return False
-        visited_states = self.states.copy()
+        remaining_states = self.states.copy()
         for state, transition in self.transitions.items():
-            visited_states.remove(state)
-            visited_symbols = self.alphabet.copy()
+            remaining_states.remove(state)
+            remaining_symbols = self.alphabet.copy()
             for symbol, states in transition.items():
-                visited_symbols.remove(symbol)
-                if len(states) != 1 or symbol == '&':
-                    return False
-            if len(visited_symbols) != 0:
-                return False
-        if len(visited_states) != 0:
-            return False
-        return True
+                remaining_symbols.remove(symbol)
+                if len(states) != 1:
+                    raise InvalidTransitionError(states,
+                    "DFAs should have only one transition per symbol,\
+                    but these {} possibilities were found")
+                if symbol == '&':
+                    raise InvalidSymbolError(symbol, "{} is meant to represent epsilon and\
+                        should not be used otherwise")
+            if len(remaining_symbols) != 0:
+                raise InvalidTransitionError(remaining_symbols,
+                "DFAs should have excactly one transition per symbol,\
+                    but these were missing: {}")
+        if len(remaining_states) != 0:
+            raise InvalidTransitionError(remaining_states,
+                "DFAs should have transitions for all states, but these don't have: {}")

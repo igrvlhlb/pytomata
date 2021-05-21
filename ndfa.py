@@ -1,4 +1,5 @@
-from automaton import Automaton, InvalidStateError, InvalidSymbolError
+from automaton import Automaton,\
+    InvalidStateError, InvalidSymbolError, InvalidTransitionError
 
 class NDFA(Automaton):
 
