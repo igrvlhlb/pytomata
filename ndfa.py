@@ -1,9 +1,10 @@
-from automaton import Automaton
+from automaton import Automaton, InvalidStateError, InvalidSymbolError
 
 class NDFA(Automaton):
 
     def __init__(self, alphabet, states, initial_state, final_states, transitions):
-        super.__init__(alphabet,states,initial_state,final_states,transitions)
+        super().__init__(alphabet,states,initial_state,final_states,transitions)
+        self._validate()
 
     def transition(self, state, symbol):
         if self.transitions.get(state) is not None:
@@ -68,25 +69,12 @@ class NDFA(Automaton):
     def _show_config(self, clock, states, input):
         print('Clock: {}, Current States: {}, Remaining Input: \'{}\''.format(clock, states, input))
 
-    # return True if the automaton
-    # is valid or False otherwise
-    def is_valid(self):
-        # '&' is a special symbol
-        # that denotes epsilon
-        for token in self.alphabet\
-            .union(self.states)\
-            .union({self.initial_state})\
-            .union(self.final_states):
-            if len(token) == 0 or token.isspace() or token == '&':
-                print("Falhou primeiro for")
-                return False
+    def _validate(self):
         for state, transition in self.transitions.items():
             if state not in self.states:
-                return False
+                raise InvalidStateError(state, "{} is not in the state set")
             for symbol, states in transition.items():
-                if symbol not in self.alphabet and symbol != '&'\
-                    or len(set(states).difference(self.states)) != 0:
-                    print(self.alphabet, symbol, set(states).difference(self.states))
-                    print("Falhou Segundo For")
-                    return False
-        return True
+                if symbol not in self.alphabet and symbol != '&':
+                    raise InvalidSymbolError(symbol, "{} is not on the input alphabet")
+                if not states.issubset(self.states):
+                    raise InvalidStateError(states, "{} is not a subset of the states set")

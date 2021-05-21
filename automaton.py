@@ -5,6 +5,7 @@ class Automaton:
         self.initial_state = initial_state
         self.final_states = set(final_states)
         self.transitions = transitions
+        self._validate()
 
     def __str__(self):
         return '(Alphabet: {}, States: {}, Initial State: {}, Final States: {}, Transitions: {})'\
