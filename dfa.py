@@ -2,6 +2,10 @@ from automaton import InvalidStateError, InvalidSymbolError, InvalidTransitionEr
 from ndfa import NDFA
 
 class DFA(NDFA):
+    def __init__(self, alphabet, states, initial_state, final_states, transitions):
+        super().__init__(alphabet,states,initial_state,final_states,transitions)
+        self._validate()
+
     def is_valid(self):
         remaining_states = self.states.copy()
         for state, transition in self.transitions.items():
