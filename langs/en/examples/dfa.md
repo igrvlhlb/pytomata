@@ -1,4 +1,4 @@
-# Deterministic Finite State Automaton
+# Deterministic Finite Automaton
 
 To have access to the `DFA` class, you should
 ```python

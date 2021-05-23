@@ -13,5 +13,5 @@ constructors the following:
 
 For examples, see [examples](#Examples)
 ## Examples
-- [Building a Deterministic Finite State Automaton](langs/en/examples/dfa.md)
-- [Building a Non-deterministic Finite State Automaton](langs/en/examples/ndfa.md)
+- [Building a Deterministic Finite Automaton](langs/en/examples/dfa.md)
+- [Building a Non-deterministic Finite Automaton](langs/en/examples/ndfa.md)

@@ -1,4 +1,4 @@
-# Non-deterministic Finite State Automaton
+# Non-deterministic Finite Automaton
 
 To have access to the `NDFA` class, you should
 ```python
