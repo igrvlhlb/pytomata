@@ -84,8 +84,11 @@ Clock: 2, Current States: ['q4', 'q3'], Remaining Input: '1'
 Clock: 2, Current States: ['q4', 'q3'], Remaining Input: '1'
 ('1', ['q4', 'q3'])
 ```
-notice that the last line is the return value from the call to `read()`
+notice that the last line is the return value from the call to `ndfa.read(<word>)`
 ```python
 >>> dfa.read('001')
 ('1', ['q4', 'q3'])
 ```
+
+For a word to be accepted by a `NDFA` it suffices to have **at least** one final state among the states
+returned by `ndfa.read(<word>)` (the reachable states for the ginven input word)

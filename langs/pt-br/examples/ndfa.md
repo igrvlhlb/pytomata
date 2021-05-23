@@ -96,3 +96,6 @@ note que a última linha é o valor de retorno da chamada de `read()`
 >>> dfa.read('001')
 ('1', ['q4', 'q3'])
 ```
+
+Para que uma palavra seja aceita por um `NDFA` basta que haja **pelo menos** um estado final
+entre os estados retornados por `ndfa.read(<word>)` (os estados alcançáveis pela palavra de entrada dada).
