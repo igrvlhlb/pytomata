@@ -18,8 +18,11 @@ same state and input symbol. In other words, given a state `q` and an input symb
 Another characteristic of `NDFA`s is that you can have epsilon-transitions -- transitions that do not
 read any input symbols. Epsilon is denoted by the character '&'.
 
-See this automaton that accepts the language `0* U 1`
+Let's take as an example this automaton that accepts the language `0* U 1`
 
+![NDFA Graph](dot/ndfa.svg)
+
+and its corresponding code
 ```python
 from pytomaton.ndfa import NDFA
 

@@ -13,7 +13,11 @@ For creating an instance of a `DFA` you have to provide it:
 
 `DFA`s have to have one transition for each input alphabet symbol from each state. Also, epsilon-transitions are not allowed.
 
-See this automaton that accepts the language `01*0`
+Let's take as an example this automaton that accepts the language `01*0`
+
+![DFA Graph](dot/dfa.svg)
+
+and its corresponding code
 
 ```python
 from pytomaton.dfa import DFA

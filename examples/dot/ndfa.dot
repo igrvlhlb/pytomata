@@ -1,0 +1,12 @@
+digraph finite_state_machine {
+	rankdir=LR;
+	size="8,5"
+	node [shape = doublecircle]; q2 q4 q6;
+	node [shape = circle];
+	q1 -> q2 [label = "ε"];
+	q1 -> q5 [label = "ε"];
+	q2 -> q3 [label = "ε"];
+	q3 -> q4 [label = "0"];
+	q4 -> q3 [label = "ε"];
+	q5 -> q6 [label = "1"];
+}
