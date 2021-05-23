@@ -11,5 +11,5 @@ informações:
 
 Para exemplos, veja [exemplos](#Exemplos)
 ## Exemplos
-- [Construindo Autômatos Finitos Determinísticos](langs/pt-br/examples/dfa.md)
-- [Construindo Autômatos Finitos Não Determinísticos](langs/ptbr/examples/ndfa.md)
+- [Construindo Autômatos Finitos Determinísticos](examples/dfa.md)
+- [Construindo Autômatos Finitos Não Determinísticos](examples/ndfa.md)
