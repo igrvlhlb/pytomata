@@ -59,7 +59,9 @@ True
 False
 ```
 
-If you wish to see the execution step by step, call `dfa.read(<word>, show_steps=True)`. If you are only interested in the final states and the input symbols not read, call it without the `show_steps` argument.
+If you wish to see the execution step by step, call `dfa.read(<word>, show_steps=True)`. Here 'Clock'
+lets us know in which step we are.<br>
+If you are only interested in the final states and the input symbols not read, call it without the `show_steps` argument.
 
 ```python
 >>> dfa.read('0100', show_steps=True)

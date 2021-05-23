@@ -68,9 +68,10 @@ False
 If you wish to see the execution step by step, call `ndfa.read(<word>, show_steps=True)`. If you are only
 interested in the final states and the input symbols not read, call it without the `show_steps` argument.<br>
 When reading the steps, you may face more than one current state. That is because of the non-determinism
-of the `NDFA`. In this simulator, we use the comcept of a clock so that we can easily know in which step
-we are in the moment. In the case of non-deterministic automatons, we make all the possible
-epsilon-transitions before the clock ticks. Here is an example of that:
+of the `NDFA`. In this simulator, we use the concept of a clock so that we can easily know in which step
+we are in the moment. Each tick of the clock corresponds to one input symbol consumed. In the case of
+non-deterministic automata, we make all the possible epsilon-transitions before the clock ticks.
+Here is an example of that:
 
 ```python
 >>> ndfa.read('001', show_steps=True)
