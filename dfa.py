@@ -1,5 +1,5 @@
-from automaton import InvalidStateError, InvalidSymbolError, InvalidTransitionError
-from ndfa import NDFA
+from .automaton import InvalidStateError, InvalidSymbolError, InvalidTransitionError
+from .ndfa import NDFA
 
 class DFA(NDFA):
     def __init__(self, alphabet, states, initial_state, final_states, transitions):

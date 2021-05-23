@@ -1,4 +1,4 @@
-from automaton import Automaton,\
+from .automaton import Automaton,\
     InvalidStateError, InvalidSymbolError, InvalidTransitionError
 
 class NDFA(Automaton):
@@ -21,8 +21,6 @@ class NDFA(Automaton):
 
         while len(syms) != 0:
             next_states = []
-            if show_steps is True:
-                self._show_config(clock, current_states,''.join(syms))
             for state in current_states:
                 # make all the epsilon-transitions
                 epsT = self.transition(state, '&')
@@ -30,6 +28,8 @@ class NDFA(Automaton):
                     for s in epsT:
                         if s not in current_states:
                             current_states.append(s)
+            if show_steps is True:
+                self._show_config(clock, current_states,''.join(syms))
             sym = syms.pop(0)
             found_transition = False
             for state in current_states:
