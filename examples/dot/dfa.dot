@@ -1,8 +1,10 @@
 digraph finite_state_machine {
 	rankdir=LR;
 	size="8,5"
+	q0[label="", image="vbar.png", width=0, fixedsize=true];
 	node [shape = doublecircle]; q3;
 	node [shape = circle];
+	q0 -> q1;
 	q1 -> q2 [label = "0"];
 	q1 -> q4 [label = "1"];
 	q2 -> q3 [label = "0"];
