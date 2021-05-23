@@ -10,6 +10,7 @@ informações:
 - as transições (como um `dict`)
 
 Para exemplos, veja [exemplos](#Exemplos)
+
 ## Exemplos
 - [Construindo Autômatos Finitos Determinísticos](examples/dfa.md)
 - [Construindo Autômatos Finitos Não Determinísticos](examples/ndfa.md)
